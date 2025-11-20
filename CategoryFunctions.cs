@@ -9,6 +9,13 @@ namespace TestEdwinZR
     public class CategoryFunctions
     {
         private string delimiter = ",";
+
+        /// <summary>
+        /// Get the string with all properties of the specified category
+        /// </summary>
+        /// <param name="pCategories">List of categories</param>
+        /// <param name="pCategoryId">Category Id to filter</param>
+        /// <returns>string with all properties of the category</returns>
         public string getCategoryProperty(List<Category> pCategories, int pCategoryId)
         {
             if (pCategories == null || !pCategories.Any())
@@ -26,6 +33,12 @@ namespace TestEdwinZR
             return $"ParentCategoryID = { pResult.ParentCategoryId + delimiter } Name = { pResult.Name + delimiter} Keywords = { pResult.Keywords}";
         }
 
+        /// <summary>
+        /// Get the keyword of the first category parent.
+        /// </summary>
+        /// <param name="pCategories">List of Categories</param>
+        /// <param name="pCategoryId">Category Id</param>
+        /// <returns>Keyword value</returns>
         private string getParentKeyword(List<Category> pCategories, int pCategoryId)
         {
             Category? vCurrenCategory = pCategories.FirstOrDefault(c => c.CategoryId == pCategoryId);
@@ -39,6 +52,12 @@ namespace TestEdwinZR
             return getParentKeyword(pCategories, vCurrenCategory.ParentCategoryId);
         }
 
+        /// <summary>
+        /// Category ids of the categories which are of N’th level in the hierarchy
+        /// </summary>
+        /// <param name="pCategories">List of Categories</param>
+        /// <param name="pLevel">Level Number</param>
+        /// <returns>String with all Category ids that are related of the level</returns>
         public string getCategoryLevel(List<Category> pCategories, int pLevel)
         {
             int[] vResult= new  int[0];
@@ -62,6 +81,13 @@ namespace TestEdwinZR
             return $"[{(vResult.Length == 0 ? "Invalid level" : string.Join(",", vResult))}]";   
         }
 
+        /// <summary>
+        /// Function that filters the categories by level and Category Id
+        /// </summary>
+        /// <param name="pCategories">List of Categories</param>
+        /// <param name="pData">Category Id</param>
+        /// <param name="plevel">Level Number</param>
+        /// <returns>List of Categories related to the Category Id and Level Number</returns>
         private int[] level(List<Category> pCategories, Category pData, int plevel)
         {
             List<int> allResults = new List<int>();

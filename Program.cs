@@ -40,20 +40,30 @@ public class Test
     {
         _categories = categories;
     }
-    public void executeFunction1(int pValue)
+    /// <summary>
+    /// Function that, given a category id returns an output string of each category property delimited with a comma.
+    /// </summary>
+    /// <param name="pCategory">Category Id</param>
+    public void executeFunction1(int pCategory)
     {
         var DsFunctions = new CategoryFunctions();
-        var vResult = DsFunctions.getCategoryProperty(_categories, pValue);
-        Console.WriteLine("Input:" + pValue);
+        var vResult = DsFunctions.getCategoryProperty(_categories, pCategory);
+        Console.WriteLine("Input:" + pCategory);
         Console.WriteLine("Output:" + vResult);
         Console.WriteLine("---------------------------------------------------------------------");
     }
 
-    public void executeFunction2(int pValue)
+    /// <summary>
+    /// Function that, given category level as parameter (say N), returns the category ids of the
+    /// categories which are of N’th level in the hierarchy.
+    /// Categories with parentId -1 are at 1st level
+    /// </summary>
+    /// <param name="pLevel">Level Number</param>
+    public void executeFunction2(int pLevel)
     {
         var DsFunctions = new CategoryFunctions();
-        var vResult = DsFunctions.getCategoryLevel(_categories, pValue);
-        Console.WriteLine("Input:" + pValue);
+        var vResult = DsFunctions.getCategoryLevel(_categories, pLevel);
+        Console.WriteLine("Input:" + pLevel);
         Console.WriteLine("Output:" + vResult);
         Console.WriteLine("---------------------------------------------------------------------");
 
